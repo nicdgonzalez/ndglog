@@ -29,7 +29,7 @@ Technologies Used
 Project Status
 ---------------
 
-This project is currently **in development**.
+This project is currently in **development**.
 
 
 Version Naming
@@ -52,17 +52,17 @@ Getting Started
 ----------------
 
 Below is an example program showcasing how to use the library as well
-as a sample output.
+as some sample output.
 
 .. code:: console
 
-  $ cat "./logging.c"
+  $ cat "./main.c"
   #include <ndglog/logging.h>
 
   struct Logger _log = { .name = "ndglog" };
 
   void start_server() {
-    ndglog.debug(*_log, "Entering function: '%s'", __func__);
+    ndglog.debug(&_log, "Entering function: '%s'", __func__);
     // ...
     ndglog.info(&_log, "Server started at: '%s'", "127.0.0.1:5000");
     return;
@@ -103,10 +103,9 @@ Building with CMake
 
   $ cd "./ndglog"
   $ cmake -G "MinGW Makefiles" -B "./build"
-  # Install the build files:
   $ cmake --build "./build" --target "install"
 
-- Minimal ``~/CMakeLists.txt`` required to include ndglog as a
+- Minimal ``~/CMakeLists.txt`` example to include ndglog as a
   depenedency.
 
 .. code:: cmake
@@ -129,28 +128,28 @@ To fix a bug or enhance an existing module, follow these steps:
 - `Fork <https://github.com/nicdgonzalez/ndglog/fork>`_ the repository
   and create a new branch:
 
-.. code:: powershell
+.. code:: console
 
-  git pull --set-upstream "https://github.com/[username]/[repository_name].git"
-  git checkout -b "improve-feature"
+  $ git clone "https://github.com/[username]/[repository_name].git"
+  $ git checkout -b "improve-feature"
 
 - Make the appropriate changes and stage the modified files:
 
-.. code:: powershell
+.. code:: console
 
-  git add <file(s)>
+  $ git add <changed file(s)>
 
 - Commit changes:
 
-.. code:: powershell
+.. code:: console
 
-  git commit -m "Improve feature."
+  $ git commit -m "Improve feature."
 
 - Push to the new branch:
 
-.. code:: powershell
+.. code:: console
 
-  git push "origin" "improve-feature"
+  $ git push "origin" "improve-feature"
 
 - Create a `Pull Request <https://github.com/nicdgonzalez/ndglog/pulls>`_.
 

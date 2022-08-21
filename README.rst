@@ -54,9 +54,8 @@ Getting Started
 Below is an example program showcasing how to use the library as well
 as some sample output.
 
-.. code:: console
+.. code:: c
 
-  $ cat "./main.c"
   #include <ndglog/logging.h>
 
   struct Logger _log = { .name = "ndglog" };
@@ -81,6 +80,8 @@ as some sample output.
     return 0;
   }
 
+.. code:: console
+
   $ cat "./logs/MyLibrary.20220819_231238.log"
   MyLibrary INFO @ 20220819_231240]: Server started at: '127.0.0.1:5000'
 
@@ -88,7 +89,17 @@ as some sample output.
 Building with CMake
 ++++++++++++++++++++
 
-- Clone the repository locally onto the machine.
+.. code::
+
+  root
+  ├── ndglog (clone of this repository)
+  └── example/
+      ├── logs/
+      |   └── MyLibrary.20220819_231238.log
+      ├── CMakeLists.txt
+      └── main.c
+
+- Clone the repository.
 
 .. code:: console
 
@@ -96,26 +107,40 @@ Building with CMake
 
 - Switch directories to the new ``ndglog`` and build the project.
 
-    Use ``cmake --help`` to view the list of Generators available.
-    I use **MinGW Makefiles** on Windows.
+  + For line 2, run ``cmake --help`` to view a list of available
+    Generators.
+  + On line 2, add ``-DCMAKE_INSTALL_PREFIX=""`` to change
+    the install location.
 
 .. code:: console
 
   $ cd "./ndglog"
-  $ cmake -G "MinGW Makefiles" -B "./build"
+  $ cmake -G "<Your Generator>" -B "./build"
   $ cmake --build "./build" --target "install"
+  $ cd "../example"
 
-- Minimal ``~/CMakeLists.txt`` example to include ndglog as a
+- Minimal ``CMakeLists.txt`` example including **ndglog** as a
   depenedency.
-
+  
 .. code:: cmake
 
-  # Run 'cmake --version' to get the value for this.
-  cmake_minimum_required(VERSION 3.0)
+  cmake_minimum_required(VERSION 3.2)
   project(MyProject VERSION 0.1.0)
-  find_project(ndglog CONFIG REQUIRED)
   add_executable(MyApp "main.c")
+  find_package(ndglog CONFIG REQUIRED)
   target_link_libraries(MyApp ndglog::ndglog)
+
+- Now build the project same as before (minus the installation)
+  and run the executable:
+
+.. code:: console
+
+  $ cmake -G "MinGW Makefiles" -B "./build"
+  $ make -C "./build"
+  $ "./build/MyApp"
+
+For a runnable version of this example,
+go to the `/demo <./demo>`_ directory.
 
 
 Contributing

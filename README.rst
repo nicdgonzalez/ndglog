@@ -13,7 +13,7 @@ Introduction
 written in C.
 
 The purpose of this project is to practice writing thread-safe
-programs in C as well as to practice writing proper
+programs in C as well as writing proper
 `CMake <https://cmake.org/>`_ scripts for the depending projects
 downstream since virtually *any* project can use a logger.
 
@@ -130,12 +130,14 @@ Building with CMake
   find_package(ndglog CONFIG REQUIRED)
   target_link_libraries(MyApp ndglog::ndglog)
 
+- Assume ``main.c`` contains the example C program.
+
 - Now build the project same as before (minus the installation)
   and run the executable:
 
 .. code:: console
 
-  $ cmake -G "MinGW Makefiles" -B "./build"
+  $ cmake -G "<Your Generator>" -B "./build"
   $ make -C "./build"
   $ "./build/MyApp"
 

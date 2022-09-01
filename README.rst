@@ -83,7 +83,7 @@ as some sample output.
 .. code:: console
 
   $ cat "./logs/MyLibrary.20220819_231238.log"
-  MyLibrary INFO @ 2022-08-19 23:12:40]: Server started at: '127.0.0.1:5000'
+  ndglog INFO @ 2022-08-19 23:12:40]: Server started at: '127.0.0.1:5000'
 
 
 Building with CMake
